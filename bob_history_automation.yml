@@ -7,12 +7,12 @@ on:
 
 jobs: 
   scrape:
-    runs-on:
+    runs-on: ubuntu-latest
     permissions:
       contents: write
 
     steps:
-      -name: Checkout code 
+      -name: Checkout code
       uses: actions/checkout@v4
 
       -name: Set up Python
@@ -21,7 +21,7 @@ jobs:
         python-version: '3.11'
 
       -name: Install dependencies
-      run: pip install requirements.txt
+      run: pip install -r requirements.txt
 
       -name: Run history bob  
       run: python append_bob_quote.py
@@ -33,6 +33,5 @@ jobs:
         git add bob_usdt_history.csv
         git commit -m "Quote: $(date + '%Y-%m-%d')" || exit 0
         git push
-
 
 
